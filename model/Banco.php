@@ -8,42 +8,43 @@ class Banco {
     }
 
     private function conexao(){
-        $this->mysqli = new mysqli('localhost', 'root' , '', 'porto_db');
+        $this->mysqli = new PDO('mysql:host=localhost;dbname=porto_db;charset=utf8','root','');
+        $this->mysqli->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);	
     }
 
     public function incluirCaminhao($_placa, $_transportadoraId, $_descarregou, $_ativo) {
-        $stmt = $this->mysqli->prepare("INSERT INTO caminhao (`Placa`, `TransportadoraId`, `Descarregou`, `Ativo`) VALUES (?,?,?,?)");
-        $stmt->bind_param("ssss", $_placa, $_transportadoraId, $_descarregou, $_ativo);
-         if($stmt->execute() == TRUE) {
-            return true ;
+        $r = $this->mysqli->prepare("INSERT INTO caminhao (`Placa`, `TransportadoraId`, `Descarregou`, `Ativo`) VALUES(:Placa,:TransportadoraId,:Descarregou,:Ativo)");
+        $r->execute(array(':Placa' => $_placa, ':TransportadoraId' => $_transportadoraId, ':Descarregou' => $_descarregou, ':Ativo' => $_ativo));
+        
+        if($r->rowCount() > 0) {
+            return true;	
         } else {
             return false;
         }
     }
 
     public function listarCaminhoes(){
-        $result = $this->mysqli->query("SELECT * FROM caminhao");
-        while($row = $result->fetch_array(MYSQLI_ASSOC)){
-            $array[] = $row;
+        $r = $this->mysqli->query("SELECT * FROM caminhao");
+        foreach($r as $linha) {
+            $array[] = $linha;
         }
-
         return $array;
     }
 
     public function listarNavios(){
-        $result = $this->mysqli->query("SELECT * FROM navio");
-        while($row = $result->fetch_array(MYSQLI_ASSOC)){
-            $array[] = $row;
+        $r = $this->mysqli->query("SELECT * FROM navio");
+        foreach($r as $linha) {
+            $array[] = $linha;
         }
-
         return $array;
     }
 
     public function incluirNavio($_matricula, $_transportadoraId, $_descarregou, $_ativo) {
-        $stmt = $this->mysqli->prepare("INSERT INTO navio (`Matricula`, `TransportadoraId`, `Descarregou`, `Ativo`) VALUES (?,?,?,?)");
-        $stmt->bind_param("ssss", $_matricula, $_transportadoraId, $_descarregou, $_ativo);
-         if($stmt->execute() == TRUE) {
-            return true ;
+        $r = $this->mysqli->prepare("INSERT INTO navio (`Matricula`, `TransportadoraId`, `Descarregou`, `Ativo`) VALUES(:Matricula,:TransportadoraId,:Descarregou,:Ativo)");
+        $r->execute(array(':Matricula' => $_matricula, ':TransportadoraId' => $_transportadoraId, ':Descarregou' => $_descarregou, ':Ativo' => $_ativo));
+        
+        if($r->rowCount() > 0) {
+            return true;	
         } else {
             return false;
         }
