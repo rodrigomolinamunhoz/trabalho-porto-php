@@ -2,15 +2,21 @@
 require_once("../model/Caminhao.php");
 
 class CadastrarCaminhaoController {
-    private $cadastrarCaminhaoController;
+    private $caminhao;
 
     public function __construct() {
         $this->incluir();
     }
 
     public function incluir() {
-        $this->cadastrarCaminhaoController = new Caminhao($_POST['placa'], $_POST['transportadoraId']);
-        $result = $this->cadastrarCaminhaoController->incluir();
+
+        $this->caminhao = Caminhao::create();
+        $this->caminhao->setPlaca($_POST['placa']);
+        $this->caminhao->setTransportadoraId($_POST['transportadoraId']);
+        $this->caminhao->setDescarregou(false);
+        $this->caminhao->setAtivo(true);
+
+        $result = $this->caminhao->incluir();
         if ($result >= 1) {
             //echo "<script>alert('Registro incluído com sucesso!');document.location='../view/cadastro.php'</script>";
             echo "Registro Incluído";

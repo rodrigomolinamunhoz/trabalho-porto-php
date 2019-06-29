@@ -18,15 +18,6 @@ class Navio extends Banco {
         return $instance;
     }
 
-    //public function __construct($_matricula, $_transportadoraId) {
-    //    parent::__construct();
-    //
-    //    $this->matricula = $_matricula;
-    //    $this->transportadoraId = $_transportadoraId;
-    //    $this->descarregou = false;
-    //    $this->ativo = true;
-    //}
-
     public function getId() {
         return $this->id;
     }

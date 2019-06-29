@@ -13,21 +13,11 @@ class Caminhao extends Banco {
         parent::__construct();
     }
 
-    //https://stackoverflow.com/questions/1699796/best-way-to-do-multiple-constructors-in-php
     public static function create() {
         $instance = new self();
         return $instance;
     }
     
-    //public function __construct($_placa, $_transportadoraId) {
-    //    parent::__construct();
-    //
-    //    $this->placa = $_placa;
-    //    $this->transportadoraId = $_transportadoraId;
-    //    $this->descarregou = false;
-    //    $this->ativo = true;
-    //}
-
     public function getId() {
         return $this->id;
     }
