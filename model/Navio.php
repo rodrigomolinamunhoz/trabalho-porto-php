@@ -9,13 +9,26 @@ class Navio extends Banco {
     private $descarregou;
     private $ativo;
 
-    public function __construct($_matricula, $_transportadoraId) {
+    public function __construct() {
         parent::__construct();
+    }
 
-        $this->matricula = $_matricula;
-        $this->transportadoraId = $_transportadoraId;
-        $this->descarregou = false;
-        $this->ativo = true;
+    public static function create() {
+        $instance = new self();
+        return $instance;
+    }
+
+    //public function __construct($_matricula, $_transportadoraId) {
+    //    parent::__construct();
+    //
+    //    $this->matricula = $_matricula;
+    //    $this->transportadoraId = $_transportadoraId;
+    //    $this->descarregou = false;
+    //    $this->ativo = true;
+    //}
+
+    public function getId() {
+        return $this->id;
     }
 
     public function getMatricula() {
@@ -34,11 +47,32 @@ class Navio extends Banco {
         return $this->ativo;
     }
 
+    public function setId($_id) {
+        $this->id = $_id;
+    }
+
+    public function setMatricula($_matricula) {
+        $this->matricula = $_matricula;
+    }
+    
+    public function setTransportadoraId($_transportadoraId) {
+        $this->transportadoraId = $_transportadoraId;
+    }
+
+    public function setDescarregou($_descarregou) {
+        $this->descarregou = $_descarregou;
+    }
+
     public function setAtivo($_ativo) {
         $this->ativo = $_ativo;
     }
 
     public function incluir() {
         return $this->incluirNavio($this->getMatricula(), $this->getTransportadoraId(), $this->getDescarregou(), $this->getAtivo());
+    }
+
+    public function inativar() {
+        $this->setAtivo(false);
+        return $this->inativarNavio($this->getId(), $this->getAtivo());
     }
 }

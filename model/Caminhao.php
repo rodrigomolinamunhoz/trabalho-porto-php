@@ -9,13 +9,27 @@ class Caminhao extends Banco {
     private $descarregou;
     private $ativo;
 
-    public function __construct($_placa, $_transportadoraId) {
+    public function __construct() {
         parent::__construct();
+    }
 
-        $this->placa = $_placa;
-        $this->transportadoraId = $_transportadoraId;
-        $this->descarregou = false;
-        $this->ativo = true;
+    //https://stackoverflow.com/questions/1699796/best-way-to-do-multiple-constructors-in-php
+    public static function create() {
+        $instance = new self();
+        return $instance;
+    }
+    
+    //public function __construct($_placa, $_transportadoraId) {
+    //    parent::__construct();
+    //
+    //    $this->placa = $_placa;
+    //    $this->transportadoraId = $_transportadoraId;
+    //    $this->descarregou = false;
+    //    $this->ativo = true;
+    //}
+
+    public function getId() {
+        return $this->id;
     }
 
     public function getPlaca() {
@@ -34,11 +48,32 @@ class Caminhao extends Banco {
         return $this->ativo;
     }
 
+    public function setId($_id) {
+        $this->id = $_id;
+    }
+
+    public function setPlaca($_placa) {
+        $this->placa = $_placa;
+    }
+    
+    public function setTransportadoraId($_transportadoraId) {
+        $this->transportadoraId = $_transportadoraId;
+    }
+
+    public function setDescarregou($_descarregou) {
+        $this->descarregou = $_descarregou;
+    }
+
     public function setAtivo($_ativo) {
         $this->ativo = $_ativo;
     }
 
     public function incluir() {
         return $this->incluirCaminhao($this->getPlaca(), $this->getTransportadoraId(), $this->getDescarregou(), $this->getAtivo());
+    }
+
+    public function inativar() {
+        $this->setAtivo(false);
+        return $this->inativarCaminhao($this->getId(), $this->getAtivo());
     }
 }

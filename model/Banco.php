@@ -13,7 +13,7 @@ class Banco {
     }
 
     public function incluirCaminhao($_placa, $_transportadoraId, $_descarregou, $_ativo) {
-        $r = $this->mysqli->prepare("INSERT INTO caminhao (`Placa`, `TransportadoraId`, `Descarregou`, `Ativo`) VALUES(:Placa,:TransportadoraId,:Descarregou,:Ativo)");
+        $r = $this->mysqli->prepare("INSERT INTO caminhao (`Placa`, `TransportadoraId`, `Descarregou`, `Ativo`) VALUES (:Placa,:TransportadoraId,:Descarregou,:Ativo)");
         $r->execute(array(':Placa' => $_placa, ':TransportadoraId' => $_transportadoraId, ':Descarregou' => $_descarregou, ':Ativo' => $_ativo));
         
         if($r->rowCount() > 0) {
@@ -40,9 +40,31 @@ class Banco {
     }
 
     public function incluirNavio($_matricula, $_transportadoraId, $_descarregou, $_ativo) {
-        $r = $this->mysqli->prepare("INSERT INTO navio (`Matricula`, `TransportadoraId`, `Descarregou`, `Ativo`) VALUES(:Matricula,:TransportadoraId,:Descarregou,:Ativo)");
+        $r = $this->mysqli->prepare("INSERT INTO navio (`Matricula`, `TransportadoraId`, `Descarregou`, `Ativo`) VALUES (:Matricula,:TransportadoraId,:Descarregou,:Ativo)");
         $r->execute(array(':Matricula' => $_matricula, ':TransportadoraId' => $_transportadoraId, ':Descarregou' => $_descarregou, ':Ativo' => $_ativo));
         
+        if($r->rowCount() > 0) {
+            return true;	
+        } else {
+            return false;
+        }
+    }
+
+    public function inativarCaminhao($_id, $_ativo) {
+        $r = $this->mysqli->prepare("UPDATE caminhao SET `Ativo`=? WHERE Id=?");
+        $r->execute(array($_ativo, $_id));
+
+        if($r->rowCount() > 0) {
+            return true;	
+        } else {
+            return false;
+        }
+    }
+
+    public function inativarNavio($_id, $_ativo) {
+        $r = $this->mysqli->prepare("UPDATE navio SET `Ativo`=? WHERE Id=?");
+        $r->execute(array($_ativo, $_id));
+
         if($r->rowCount() > 0) {
             return true;	
         } else {
