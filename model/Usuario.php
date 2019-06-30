@@ -57,5 +57,9 @@ class Usuario extends Banco {
     public function setTipoUsuario($_tipoUsuario) {
         $this->tipoUsuario = $_tipoUsuario;
     }
+
+    public function incluir() {
+        return $this->incluirUsuario($this->getNomeCompleto(), $this->getLogin(), $this->getSenha(), $this->getTipoUsuario());
+    }
 }
 ?>

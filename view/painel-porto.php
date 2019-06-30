@@ -3,7 +3,6 @@
 
     if (!isset($_SESSION['usuario_logado'])) {
         header("Location:index.php");	
-        echo "<script>document.location='../index.php'</script>";
     }
 ?>
 

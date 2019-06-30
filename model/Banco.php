@@ -25,18 +25,26 @@ class Banco {
 
     public function listarCaminhoes(){
         $r = $this->mysqli->query("SELECT * FROM caminhao");
-        foreach($r as $linha) {
-            $array[] = $linha;
+        if($r->rowCount() > 0) {
+            foreach($r as $linha) {
+                $array[] = $linha;
+            }
+            return $array;	
+        } else {
+            return $array = array();
         }
-        return $array;
     }
 
     public function listarNavios(){
         $r = $this->mysqli->query("SELECT * FROM navio");
-        foreach($r as $linha) {
-            $array[] = $linha;
+        if($r->rowCount() > 0) {
+            foreach($r as $linha) {
+                $array[] = $linha;
+            }
+            return $array;	
+        } else {
+            return $array = array();
         }
-        return $array;
     }
 
     public function incluirNavio($_matricula, $_transportadoraId, $_descarregou, $_ativo) {
@@ -80,6 +88,28 @@ class Banco {
             return $r->fetchAll(PDO::FETCH_ASSOC);	
         } else {
             return null;
+        }
+    }
+
+    public function verificarUsuarioExistente($_login) {
+        $r = $this->mysqli->prepare("SELECT * FROM usuario WHERE `Login`=?");
+        $r->execute(array($_login));
+
+        if($r->rowCount() > 0) {
+            return true;	
+        } else {
+            return false;
+        }
+    }
+
+    public function incluirUsuario($_nomeCompleto, $_login, $_senha, $_tipoUsuario) {
+        $r = $this->mysqli->prepare("INSERT INTO usuario (`NomeCompleto`, `Login`, `Senha`, `TipoUsuario`) VALUES (:NomeCompleto,:Login,:Senha,:TipoUsuario)");
+        $r->execute(array(':NomeCompleto' => $_nomeCompleto, ':Login' => $_login, ':Senha' => $_senha, ':TipoUsuario' => $_tipoUsuario));
+        
+        if($r->rowCount() > 0) {
+            return true;	
+        } else {
+            return false;
         }
     }
 }
