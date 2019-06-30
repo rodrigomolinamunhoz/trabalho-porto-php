@@ -16,8 +16,13 @@
                 <a class="nav-link" href="#">Cadastro de Container</a>
             </li>
         </ul>
+        <ul class="nav justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#"> <strong>Bem-Vindo,</strong> <?php echo $_SESSION['usuario_logado'] ?></a>
+            </li>
+        </ul>
         <form class="form-inline my-2 my-lg-0">
-            <button class="btn btn-danger" type="submit">Sair</button>
+            <a class="btn btn-danger" href="http://localhost/trabalho-porto-php/controller/LogoutController.php" role="button">Sair</a>
         </form>
     </div>
 </nav>

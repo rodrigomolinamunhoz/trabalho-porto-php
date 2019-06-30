@@ -1,3 +1,5 @@
+<?php require_once("../../view/verifica-sessao.php"); ?>
+
 <!DOCTYPE HTML>
 <html>
    <?php include("../head.php") ?>

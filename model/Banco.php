@@ -74,7 +74,7 @@ class Banco {
 
     public function login($_login, $_senha) {
         $r = $this->mysqli->prepare("SELECT * FROM usuario WHERE `Login`=? AND `Senha`=?");
-        $r->execute(array($_login, $_senha));
+        $r->execute(array($_login, md5($_senha)));
 
         if($r->rowCount() > 0) {
             return $r->fetchAll(PDO::FETCH_ASSOC);	

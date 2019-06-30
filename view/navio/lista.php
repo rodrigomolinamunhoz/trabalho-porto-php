@@ -1,3 +1,4 @@
+<?php require_once("../../view/verifica-sessao.php"); ?>
 <?php require_once("../../controller/ListarNavioController.php"); ?>
 
 <!DOCTYPE HTML>
