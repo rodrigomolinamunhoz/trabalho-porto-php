@@ -13,8 +13,12 @@ class Banco {
     }
 
     public function incluirCaminhao($_placa, $_transportadoraId, $_descarregou, $_ativo) {
-        $r = $this->mysqli->prepare("INSERT INTO caminhao (`Placa`, `TransportadoraId`, `Descarregou`, `Ativo`) VALUES (:Placa,:TransportadoraId,:Descarregou,:Ativo)");
-        $r->execute(array(':Placa' => $_placa, ':TransportadoraId' => $_transportadoraId, ':Descarregou' => $_descarregou, ':Ativo' => $_ativo));
+        try {
+            $r = $this->mysqli->prepare("INSERT INTO caminhao (`Placa`, `TransportadoraId`, `Descarregou`, `Ativo`) VALUES (:Placa,:TransportadoraId,:Descarregou,:Ativo)");
+            $r->execute(array(':Placa' => $_placa, ':TransportadoraId' => $_transportadoraId, ':Descarregou' => $_descarregou, ':Ativo' => $_ativo));
+        } catch (PDOException $e) {
+            return false;
+        }
         
         if($r->rowCount() > 0) {
             return true;	
@@ -52,9 +56,13 @@ class Banco {
     }
 
     public function incluirNavio($_matricula, $_transportadoraId, $_descarregou, $_ativo) {
-        $r = $this->mysqli->prepare("INSERT INTO navio (`Matricula`, `TransportadoraId`, `Descarregou`, `Ativo`) VALUES (:Matricula,:TransportadoraId,:Descarregou,:Ativo)");
-        $r->execute(array(':Matricula' => $_matricula, ':TransportadoraId' => $_transportadoraId, ':Descarregou' => $_descarregou, ':Ativo' => $_ativo));
-        
+        try {
+            $r = $this->mysqli->prepare("INSERT INTO navio (`Matricula`, `TransportadoraId`, `Descarregou`, `Ativo`) VALUES (:Matricula,:TransportadoraId,:Descarregou,:Ativo)");
+            $r->execute(array(':Matricula' => $_matricula, ':TransportadoraId' => $_transportadoraId, ':Descarregou' => $_descarregou, ':Ativo' => $_ativo));
+        } catch (PDOException $e) {
+            return false;
+        }
+       
         if($r->rowCount() > 0) {
             return true;	
         } else {

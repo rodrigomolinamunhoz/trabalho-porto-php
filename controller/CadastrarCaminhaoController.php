@@ -21,7 +21,7 @@ class CadastrarCaminhaoController {
         if ($result >= 1) {
             echo "<script>alert('Registro cadastrado com sucesso!');document.location='../view/caminhao/lista.php'</script>";
         } else {
-            echo "<script>alert('Erro ao cadastrar registro!');history.back()</script>";
+            echo "<script>alert('Erro ao cadastrar registro! Verifique se já não existe um registro igual.');history.back()</script>";
         }
     }
 }

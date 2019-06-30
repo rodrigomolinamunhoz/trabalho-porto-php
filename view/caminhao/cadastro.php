@@ -14,7 +14,7 @@
                   <h2 class="text-center">Cadastro Caminhão</h2>
                   <div class="form-group">
                      <label>Placa:</label>
-                     <input type="text" class="form-control" id="placa" name="placa" required>
+                     <input type="text" class="form-control" id="placa" name="placa" minlength="7" maxlength="7" required>
                   </div>
                   <div class="form-group">
                      <button type="submit" class="btn btn-primary btn-block">Salvar</button>
