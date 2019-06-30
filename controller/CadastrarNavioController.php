@@ -9,7 +9,7 @@ class CadastrarNavioController {
     }
 
     public function incluir() {
-         $this->caminhao = Navio::create();
+        $this->caminhao = Navio::create();
         $this->caminhao->setMatricula($_POST['matricula']);
         $this->caminhao->setTransportadoraId($_POST['transportadoraId']);
         $this->caminhao->setDescarregou(false);
@@ -17,11 +17,9 @@ class CadastrarNavioController {
 
         $result = $this->caminhao->incluir();
         if ($result >= 1) {
-            //echo "<script>alert('Registro incluído com sucesso!');document.location='../view/cadastro.php'</script>";
-            echo "Registro Incluído";
+            echo "<script>alert('Registro cadastrado com sucesso!');document.location='../view/navio/lista.php'</script>";
         } else {
-            //echo "<script>alert('Erro ao gravar registro!, verifique se o livro não está duplicado');history.back()</script>";
-            echo "Erro";
+            echo "<script>alert('Erro ao cadastrar registro!');history.back()</script>";
         }
     }
 }

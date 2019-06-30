@@ -71,4 +71,15 @@ class Banco {
             return false;
         }
     }
+
+    public function login($_login, $_senha) {
+        $r = $this->mysqli->prepare("SELECT * FROM usuario WHERE `Login`=? AND `Senha`=?");
+        $r->execute(array($_login, $_senha));
+
+        if($r->rowCount() > 0) {
+            return $r->fetchAll(PDO::FETCH_ASSOC);	
+        } else {
+            return null;
+        }
+    }
 }

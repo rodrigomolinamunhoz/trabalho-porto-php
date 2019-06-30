@@ -2,6 +2,7 @@
 <html>
    <?php include("../head.php") ?>
    <body>
+      <?php include("../menu-painel.php"); ?>
       <div class="container">
          <div class="row">
             <div class="col flex-unordered">

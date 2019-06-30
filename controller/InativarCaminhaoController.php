@@ -12,11 +12,9 @@ class InativarCaminhaoController {
         $result = $this->caminhao->inativar();
 
         if ($result >= 1) {
-            //echo "<script>alert('Registro incluído com sucesso!');document.location='../view/cadastro.php'</script>";
-            echo "Inativou";
+            echo "<script>alert('Registro inativado com sucesso!');document.location='../view/caminhao/lista.php'</script>";
         } else {
-            //echo "<script>alert('Erro ao gravar registro!, verifique se o livro não está duplicado');history.back()</script>";
-            echo "Não inativou";
+            echo "<script>alert('Erro ao inativar registro!');history.back()</script>";
         }
     }
 }

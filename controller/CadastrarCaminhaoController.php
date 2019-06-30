@@ -18,11 +18,9 @@ class CadastrarCaminhaoController {
 
         $result = $this->caminhao->incluir();
         if ($result >= 1) {
-            //echo "<script>alert('Registro incluído com sucesso!');document.location='../view/cadastro.php'</script>";
-            echo "Registro Incluído";
+            echo "<script>alert('Registro cadastrado com sucesso!');document.location='../view/caminhao/lista.php'</script>";
         } else {
-            //echo "<script>alert('Erro ao gravar registro!, verifique se o livro não está duplicado');history.back()</script>";
-            echo "Erro";
+            echo "<script>alert('Erro ao cadastrar registro!');history.back()</script>";
         }
     }
 }
