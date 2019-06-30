@@ -6,15 +6,31 @@
 
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item">
-                <a class="nav-link" href="http://localhost/trabalho-porto-php/view/caminhao/lista.php">Cadastro de Caminhão</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="http://localhost/trabalho-porto-php/view/navio/lista.php">Cadastro de Navio</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Cadastro de Container</a>
-            </li>
+            
+            <?php if ($_SESSION['tipo_usuario'] == 1): ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost/trabalho-porto-php/view/caminhao/lista.php">Cadastro de Caminhão</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost/trabalho-porto-php/view/navio/lista.php">Cadastro de Navio</a>
+                </li>
+            <?php endif ?>
+            
+            <?php if ($_SESSION['tipo_usuario'] == 2): ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Carregar Caminhão</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Descarregar Caminhão</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Carregar Navio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Descarregar Navio</a>
+                </li>
+            <?php endif ?>
+            
         </ul>
         <ul class="nav justify-content-end">
             <li class="nav-item">

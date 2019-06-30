@@ -25,6 +25,8 @@ class LoginController {
             session_start();
             $_SESSION['usuario_logado'] = $usuario->getNomeCompleto();
             $_SESSION['id_usuario'] = $usuario->getId();
+            $_SESSION['tipo_usuario'] = $usuario->getTipoUsuario();
+            
             echo "<script>alert('Login efetuado com sucesso!');document.location='../view/painel-porto.php'</script>";
         } else {
             echo "<script>alert('Login ou senha incorreto(s)!');history.back()</script>";
