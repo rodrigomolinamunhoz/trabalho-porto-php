@@ -1,5 +1,6 @@
 <?php
 require_once("../model/Navio.php");
+session_start();
 
 class CadastrarNavioController {
     private $caminhao;
@@ -11,7 +12,7 @@ class CadastrarNavioController {
     public function incluir() {
         $this->caminhao = Navio::create();
         $this->caminhao->setMatricula($_POST['matricula']);
-        $this->caminhao->setTransportadoraId($_POST['transportadoraId']);
+        $this->caminhao->setTransportadoraId($_SESSION['id_usuario']);
         $this->caminhao->setDescarregou(false);
         $this->caminhao->setAtivo(true);
 

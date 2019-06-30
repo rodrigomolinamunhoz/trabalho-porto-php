@@ -23,8 +23,10 @@ class Banco {
         }
     }
 
-    public function listarCaminhoes(){
-        $r = $this->mysqli->query("SELECT * FROM caminhao");
+    public function listarCaminhoes($_transportadoraId){
+        $r = $this->mysqli->prepare("SELECT * FROM caminhao WHERE `TransportadoraId`=? ORDER BY `Ativo` DESC");
+        $r->execute(array($_transportadoraId));
+
         if($r->rowCount() > 0) {
             foreach($r as $linha) {
                 $array[] = $linha;
@@ -35,8 +37,10 @@ class Banco {
         }
     }
 
-    public function listarNavios(){
-        $r = $this->mysqli->query("SELECT * FROM navio");
+    public function listarNavios($_transportadoraId){
+        $r = $this->mysqli->prepare("SELECT * FROM navio WHERE `TransportadoraId`=? ORDER BY `Ativo` DESC");
+        $r->execute(array($_transportadoraId));
+
         if($r->rowCount() > 0) {
             foreach($r as $linha) {
                 $array[] = $linha;

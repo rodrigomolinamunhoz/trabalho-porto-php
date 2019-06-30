@@ -12,7 +12,7 @@ class ListarNavioController {
     }
 
     private function criarTabela(){
-        $row = $this->lista->listarNavios();
+        $row = $this->lista->listarNavios($_SESSION['id_usuario']);
         foreach ($row as $value){
             echo "<tr>";
             echo "<th>".$value['Id'] ."</th>";

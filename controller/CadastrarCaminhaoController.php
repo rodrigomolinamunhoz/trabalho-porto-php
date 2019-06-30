@@ -1,5 +1,6 @@
 <?php
 require_once("../model/Caminhao.php");
+session_start();
 
 class CadastrarCaminhaoController {
     private $caminhao;
@@ -12,7 +13,7 @@ class CadastrarCaminhaoController {
 
         $this->caminhao = Caminhao::create();
         $this->caminhao->setPlaca($_POST['placa']);
-        $this->caminhao->setTransportadoraId($_POST['transportadoraId']);
+        $this->caminhao->setTransportadoraId($_SESSION['id_usuario']);
         $this->caminhao->setDescarregou(false);
         $this->caminhao->setAtivo(true);
 

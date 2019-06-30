@@ -17,25 +17,6 @@
                      <input type="text" class="form-control" id="placa" name="placa" required>
                   </div>
                   <div class="form-group">
-                     <label>Transportadora:</label>
-                     <select class="form-control" id="transportadoraId" name="transportadoraId" required>
-                        <option value="">Selecione</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                     </select>
-                  </div>
-                  <div class="form-group">
-                     <label>Descarregou:</label>
-                     <div class="radio">
-                        <label><input type="radio" name="descarregou" value="1">Sim</label>
-                     </div>
-                     <div class="radio">
-                        <label><input type="radio" name="descarregou" value="0" checked>Não</label>
-                     </div>
-                  </div>
-                  <div class="form-group">
                      <button type="submit" class="btn btn-primary btn-block">Salvar</button>
                   </div>
                </form>

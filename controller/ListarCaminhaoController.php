@@ -12,7 +12,7 @@ class ListarCaminhaoController {
     }
 
     private function criarTabela(){
-        $row = $this->lista->listarCaminhoes();
+        $row = $this->lista->listarCaminhoes($_SESSION['id_usuario']);
         foreach ($row as $value){
             echo "<tr>";
             echo "<th>".$value['Id'] ."</th>";
